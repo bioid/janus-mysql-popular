@@ -30,7 +30,6 @@ function Plugin() {
 }
 
 Plugin.prototype.call = function(name, data) {
-    console.log("popular data", data);
     if (!data.roomUrl)
       return;
     var url = data.roomUrl,
