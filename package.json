@@ -1,6 +1,6 @@
 {
   "name": "janus-mysql-popular",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Store counts of entered rooms in mysql db.",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "mysql": "^2.12.0"
   },
   "repository": {
-     "type" : "git",
-     "url": "https://github.com/bioid/janus-mysql-popular.git"  
+    "type": "git",
+    "url": "https://github.com/bioid/janus-mysql-popular.git"
   }
 }
