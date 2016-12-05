@@ -1,0 +1,14 @@
+{
+  "name": "janus-mysql-popular",
+  "version": "0.0.1",
+  "description": "Store counts of entered rooms in mysql db.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Hinshaw",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.12.0"
+  }
+}
