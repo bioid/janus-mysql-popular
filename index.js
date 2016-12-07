@@ -17,7 +17,7 @@ var create_update_procedure = ""
     create_update_procedure += "BEGIN"
     create_update_procedure += "  UPDATE `popular` "
     create_update_procedure += "    SET weight = weight * POW(2,"
-    create_update_procedure += "    TIMESTAMPDIFF(MICROSECOND, lastEvaluated, NOW()) / halfLife),"
+    create_update_procedure += "    (TIMESTAMPDIFF(SECOND, lastEvaluated, NOW()) * 1000) / halfLife),"
     create_update_procedure += "    lastEvaluated = NOW()"
     create_update_procedure += "    WHERE id like '%';"
     create_update_procedure += "END"
@@ -59,7 +59,7 @@ Plugin.prototype.call = function(name, data) {
     var sql = "INSERT INTO `popular` (url, roomName, weight, lastEvaluated, lastSeen) "; 
         sql += "VALUES (?, ?, 2.0, NOW(), NOW()) ";
         sql += "ON DUPLICATE KEY UPDATE count = count + 1,"
-        sql += " weight = 1 + (weight * POW(2, TIMESTAMPDIFF(MICROSECOND, NOW(), lastEvaluated) / ?)),"
+        sql += " weight = 1 + (weight * POW(2, (TIMESTAMPDIFF(SECOND, NOW(), lastEvaluated) * 1000) / ?)),"
         sql += " lastSeen = NOW();";
     this._conn.query(sql, [url, roomName, this._halfLife], function(err, results) {
         if(err != null) console.log(err);
