@@ -1,6 +1,6 @@
 {
   "name": "janus-mysql-popular",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Store counts of entered rooms in mysql db.",
   "main": "index.js",
   "scripts": {
