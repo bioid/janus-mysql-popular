@@ -51,7 +51,8 @@ function Plugin() {
 }
 
 Plugin.prototype.call = function(name, data) {
-    if (!data.roomUrl)
+    if (!data.roomUrl || data.roomUrl === "http://www.janusvr.com/newlobby/index.html"
+        ||  data.roomUrl === "http://www.janusvr.com/index.html")
       return;
     var url = data.roomUrl,
         roomName = data.roomName || "";
