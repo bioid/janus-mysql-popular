@@ -64,13 +64,13 @@ Plugin.prototype.call = function(name, data) {
         sql += "VALUES (?, ?, 2.0, NOW(), NOW()) ";
         sql += "ON DUPLICATE KEY UPDATE count = count + 1,"
         sql += " weight = 1 + (weight * POW(2, (TIMESTAMPDIFF(SECOND, NOW(), lastEvaluated) * 1000) / ?)),"
-        sql += " lastSeen = NOW(), roomName = ?;";
+        sql += " lastSeen = NOW(), lastEvaluated = NOW(), roomName = ?;";
     this._conn.query(sql, [url, roomName, this._halfLife, roomName], function(err, results) {
         if(err != null) console.log(err);
         var now = Date.now();
         if (now - this._lastUpdate >= this._updateInterval) {
           this._lastUpdate = now;
-          this._conn.query("CALL updatePopularWeight(?);", [this._halfLife], function(err) {
+          this._conn.query("CALL updatePopularWeight("+this._halfLife+");", function(err) {
             if (err) console.log(err);
           });
         }
