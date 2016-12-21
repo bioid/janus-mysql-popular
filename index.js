@@ -2,13 +2,13 @@ var mysql  = require('mysql');
 
 var create_popular_query = "CREATE TABLE IF NOT EXISTS `popular` (";
     create_popular_query+= "`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY(`id`),";
-    create_popular_query+= "  `url` varchar(255) NOT NULL, UNIQUE(`url`),";
     create_popular_query+= "  `roomName` varchar(255) DEFAULT NULL,";
+    create_popular_query+= "  `url` varchar(255) NOT NULL, UNIQUE(`url`),";
+    create_popular_query+= "  `thumbnail` varchar(255) NOT NULL DEFAULT '',";
     create_popular_query+= "  `count` int(11) DEFAULT 1,";
     create_popular_query+= "  `weight` DECIMAL(11, 4) DEFAULT NULL,";
     create_popular_query+= "  `lastEvaluated` DATETIME,";
     create_popular_query+= "  `lastSeen` DATETIME";
-
     create_popular_query+= ")";
 
 var drop_update_procedure = "DROP PROCEDURE IF EXISTS updatePopularWeight;"
