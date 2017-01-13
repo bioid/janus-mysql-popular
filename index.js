@@ -36,12 +36,21 @@ function Plugin() {
     this._lastUpdate = Date.now();
 
     this._conn.query(create_popular_query, function(err, results) {
-        if(err != null) throw new Error(err);
+        if(err) {
+            console.log(err);
+            return;
+        }
         if(results.warningCount == 0) log.info("Created `popular` table.");
         this._conn.query(drop_update_procedure, function(err) {
-            if (err) throw new Error(err);
+            if (err) {
+                console.log(err);
+                return;
+            }
             this._conn.query(create_update_procedure, function(err) {
-              if (err) throw new Error(err);
+              if (err) {
+                console.log(err);
+                return;
+            }
             })
         }.bind(this));
     }.bind(this));
