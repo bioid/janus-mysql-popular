@@ -60,7 +60,8 @@ function Plugin() {
 }
 
 Plugin.prototype.call = function(name, data) {
-    if (!data.roomUrl || data.roomUrl.indexOf("file://") > -1 
+    if (!data.roomUrl || data.roomUrl.indexOf("file://") > -1
+        ||  (data.hasOwnProperty('botMode') && data.botMode  == "true") 
         ||  data.roomUrl === "http://www.janusvr.com/newlobby/index.html"
         ||  data.roomUrl === "http://www.janusvr.com/index.html"
         ||  data.roomUrl === "workspaces"
